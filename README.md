@@ -1,19 +1,38 @@
-# :earth_americas: GDP dashboard template
+# Bias Audit: Logistic Regression on Adult Dataset
 
-A simple Streamlit app showing the GDP of different countries in the world.
+## 📊 Project Overview
+This project audits bias in a Logistic Regression model trained on the UCI Adult dataset.  
+The target is **income ≥ 50K**, with **sex (Male vs Female)** as the sensitive attribute, and **education level** as the feature of interest.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://gdp-dashboard-template.streamlit.app/)
+## 🎯 Goals
+- Train a baseline model and measure accuracy.
+- Audit fairness metrics across Male vs Female.
+- Explore intersectional fairness (sex × education).
+- Apply bias mitigation (demographic parity).
+- Compare fairness metrics before vs after mitigation.
 
-### How to run it on your own machine
+## ⚙️ Methods
+- **Model**: Logistic Regression (scikit-learn).
+- **Fairness metrics**: Selection rate, true positive rate, demographic parity difference (Fairlearn).
+- **Mitigation**: ExponentiatedGradient with DemographicParity constraint.
 
-1. Install the requirements
+## 📈 Results
+- **Baseline accuracy**: ~0.844
+- **Bias findings**:
+  - Male group had higher selection rate for income ≥ 50K.
+  - Women with the same education level as men were predicted less often as high income.
+- **Mitigation results**:
+  - Demographic parity difference reduced after applying fairness constraints.
+  - Selection rates across groups became more balanced.
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+## 🖼️ Visualizations
+- Fairness metrics by sex.
+- Fairness metrics by sex × education.
+- Selection rate comparison before vs after mitigation.
 
-2. Run the app
+## ✅ Conclusion
+The audit shows that the baseline model exhibits gender bias, especially within education levels.  
+Applying fairness constraints improves parity, though at some cost to accuracy.  
+This demonstrates the importance of auditing and mitigating bias in predictive models.
 
-   ```
-   $ streamlit run streamlit_app.py
    ```
